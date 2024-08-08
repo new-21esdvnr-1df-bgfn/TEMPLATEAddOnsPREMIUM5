@@ -24,6 +24,32 @@ WA.onInit().then(() => {
         console.log('Scripting API Extra ready');
     }).catch(e => console.error(e));
 
+    // Julia custom TS
+    WA.room.onEnterLayer("floor").subscribe(() => {
+        WA.room.hideLayer("roof");
+        WA.room.hideLayer("walls-bg-front");
+        WA.room.hideLayer("sign");
+      });
+      
+    WA.room.onLeaveLayer("floor").subscribe(() => {
+        WA.room.showLayer("roof");
+        WA.room.showLayer("walls-bg-front");
+        WA.room.showLayer("facade-furniture-bg");
+        WA.room.showLayer("sign");
+      });
+    
+      WA.room.onEnterLayer("rooms_floor").subscribe(() => {
+        WA.room.hideLayer("facade-furniture-fg");
+        WA.room.hideLayer("facade");
+        WA.room.hideLayer("facade-furniture-bg");
+      });
+      
+    WA.room.onLeaveLayer("rooms_floor").subscribe(() => {
+        WA.room.showLayer("facade-furniture-fg");
+        WA.room.showLayer("facade");
+        WA.room.showLayer("facade-furniture-bg");
+      });
+
 }).catch(e => console.error(e));
 
 function closePopup(){
